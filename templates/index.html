@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mb-4">Submit Your Information</h1>
+    <form method="POST" action="{{ url_for('submit') }}" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="dob" name="dob" required>
+        </div>
+        <div class="mb-3">
+            <label for="aadhar_no" class="form-label">Aadhar Number</label>
+            <input type="text" class="form-control" id="aadhar_no" name="aadhar_no" required>
+        </div>
+        <div class="mb-3">
+            <label for="pan_no" class="form-label">PAN Number</label>
+            <input type="text" class="form-control" id="pan_no" name="pan_no" required>
+        </div>
+        <div class="mb-3">
+            <label for="aadhar_photo" class="form-label">Aadhar Photo</label>
+            <input type="file" class="form-control" id="aadhar_photo" name="aadhar_photo" accept=".png,.jpg,.jpeg" required>
+        </div>
+        <div class="mb-3">
+            <label for="pan_card" class="form-label">PAN Card Photo</label>
+            <input type="file" class="form-control" id="pan_card" name="pan_card" accept=".png,.jpg,.jpeg" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

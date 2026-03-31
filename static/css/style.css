@@ -1,0 +1,82 @@
+body {
+    background-color: #1a1a1a; /* Dark gray background */
+    color: #ffffff; /* White text */
+}
+
+.container {
+    max-width: 600px;
+    background-color: #2c2c2c; /* Slightly lighter dark background for container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar.navbar-dark {
+    background-color: #1f1f1f !important; /* Dark navbar background, high specificity */
+    color: #ffffff !important; /* White text */
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+    color: #ffffff !important; /* White navbar text */
+}
+
+.navbar-dark .navbar-brand:hover,
+.navbar-dark .nav-link:hover {
+    color: #e0e0e0 !important; /* Light gray on hover */
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: #555555; /* Dark border for toggler */
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* White toggler icon */
+}
+
+.alert {
+    margin-bottom: 20px;
+    background-color: #3d3d3d; /* Dark alert background */
+    color: #ffffff; /* White alert text */
+    border: none;
+}
+
+.alert-success {
+    background-color: #2e7d32; /* Dark green for success */
+}
+
+.alert-danger {
+    background-color: #d32f2f; /* Dark red for error */
+}
+
+.form-control {
+    background-color: #333333; /* Dark input background */
+    color: #ffffff; /* White input text */
+    border: 1px solid #555555; /* Dark border */
+}
+
+.form-control:focus {
+    background-color: #444444; /* Slightly lighter on focus */
+    color: #ffffff;
+    border-color: #777777;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.form-label {
+    color: #e0e0e0; /* Light gray labels */
+}
+
+.btn-primary {
+    background-color: #1976d2; /* Dark blue button */
+    border-color: #1976d2;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1565c0; /* Darker blue on hover */
+    border-color: #1565c0;
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
