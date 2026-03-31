@@ -1,7 +1,7 @@
-# Verification and Extraction of Information from Semi-Categorized Documents
+# Verify-Information-from-Image-Document
 
 ## Overview
-The "Verification and Extraction of Information from Semi-Categorized Documents" project is a web-based application designed to automate the verification and storage of identity documents (Aadhaar and PAN cards) and enable users to submit arbitrary documents with descriptive prompts. Built with a modern tech stack, the application features a dark-themed, responsive interface powered by Flask and Bootstrap, with backend processing for image-based data extraction and validation. The system uses Optical Character Recognition (OCR) and Roboflow’s machine learning models to verify Aadhaar and PAN details, storing validated data in a PostgreSQL database named `minor`. It also supports a prompt-based submission feature for flexible document uploads, making it a versatile tool for document management.
+The "Verify-Information-from-Image-Document" project is a web-based application designed to automate the verification and storage of identity documents (Aadhaar and PAN cards) and enable users to submit arbitrary documents with descriptive prompts. Built with a modern tech stack, the application features a dark-themed, responsive interface powered by Flask and Bootstrap, with backend processing for image-based data extraction and validation. The system uses Optical Character Recognition (OCR) and Roboflow’s machine learning models to verify Aadhaar and PAN details, storing validated data in a PostgreSQL database named `minor`. It also supports a prompt-based submission feature for flexible document uploads, making it a versatile tool for document management.
 
 The project provides two main functionalities:
 1. **Identity Document Verification**: Users submit Aadhaar and PAN card details (name, date of birth, Aadhaar number, PAN number) along with images, which are verified against extracted data using OCR and Roboflow models.
@@ -40,11 +40,10 @@ project/
 ├── templates/
 │   ├── base.html
 │   ├── index.html
-│   ├── prompt.html
 ├── static/
 │   ├── css/
 │   │   ├── style.css
-│   ├── uploads/
+├── uploads/
 ├── extract_compare_aadhaar.py
 ├── extract_compare_pan.py
 ├── requirements.txt
@@ -158,3 +157,73 @@ The project has wide-ranging applications in document management and verificatio
 - **OCR/Roboflow Failures**: Check API key and model IDs, test scripts standalone (`python extract_compare_aadhaar.py`).
 - **Theme Issues**: Clear browser cache or inspect CSS in dev tools (F12).
 
+Installation & Setup
+1. Clone the Repository
+Bashgit clone <your-repo-url>
+cd document-verification
+2. Create and Activate Virtual Environment
+Bashpython -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux / macOS
+source venv/bin/activate
+3. Install Dependencies
+Bashpip install -r requirements.txt
+4. Install Tesseract OCR
+Download and install Tesseract OCR:
+
+Windows: https://github.com/UB-Mannheim/tesseract/wiki
+Linux: sudo apt install tesseract-ocr
+
+Update the Tesseract path in both extract_compare_aadhaar.py and extract_compare_pan.py if needed:
+Pythonpytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
+5. Setup PostgreSQL Database
+Create a database:
+SQLCREATE DATABASE document_verification;
+Update database credentials in app.py if necessary.
+Then run these SQL queries to create the required tables:
+SQLCREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    dob DATE,
+    aadhar_no VARCHAR(12),
+    pan_no VARCHAR(10),
+    aadhar_photo_path TEXT,
+    pan_card_path TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE prompt_submissions (
+    id SERIAL PRIMARY KEY,
+    prompt TEXT,
+    document_path TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+6. Configure Roboflow API Key
+Replace the placeholder API key in:
+
+extract_compare_aadhaar.py
+extract_compare_pan.py
+
+PythonROBOFLOW_API_KEY = 'your_actual_roboflow_api_key_here'
+7. Run the Application
+Bashpython app.py
+Open your browser and navigate to:
+http://127.0.0.1:5000
+
+Usage
+
+Go to the homepage.
+Enter your Full Name, Date of Birth, Aadhaar Number, and PAN Number.
+Upload clear images of your Aadhaar Card and PAN Card.
+Click Submit.
+The system will extract data from both cards, validate them, and compare with your input.
+You will see success or error messages based on the verification result.
+
+
+Important Notes
+
+For best results, use clear, well-lit images of the cards.
+Aadhaar number must be exactly 12 digits and pass Verhoeff validation.
+PAN number must follow the format: ABCDE1234F.
+The application currently runs in debug mode.
